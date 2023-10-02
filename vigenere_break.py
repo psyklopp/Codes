@@ -34,4 +34,31 @@ helper_dict = dict(zip(string.ascii_lowercase, range(1,27)))
 helper_dict.pop('z')
 print(helper_dict)
 
+#8 read each chunk - we know that 'lpr' translates to 'the'
+# l = 12 t = 20
+# p = 16 h = 8
+# r = 18 e = 5
+# to get the key, we do cipher text - plainttext mod 25 (because we don't have z)
+# We do this for each chunk we got earlier
+key_list = list(helper_dict.keys())
+val_list = list(helper_dict.values())
+for item in chunks:
+    # position 1
+    position_1 = (helper_dict[item[0]] - 17) % 25
+    char_1 = key_list[position_1-1]
+    # position 2
+    position_2 = (helper_dict[item[1]] - 8) % 25
+    char_2 = key_list[position_2-1]
+    # position 3
+    position_3 = (helper_dict[item[2]] - 13) % 25
+    char_3 = key_list[position_3-1]
+    # position 4
+    position_4 = (helper_dict[item[3]] - 6) % 25
+    char_4 = key_list[position_4-1]
+    # position 5
+    position_5 = (helper_dict[item[4]] - 18) % 25
+    char_5 = key_list[position_5-1]
+    print(char_1+char_2+char_3+char_4+char_5)
 
+#clarification, after checking out the correct 3 words in each chunk it was quite easy to guess the remaining
+#letters
